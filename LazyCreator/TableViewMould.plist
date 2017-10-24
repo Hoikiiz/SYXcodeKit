@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string> </string>
+	<string>#pragma mark - UITableViewDataSource</string>
+	<string> </string>
+	<string>- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</string>
+	<string>{</string>
+	<string>    return 0;</string>
+	<string>}</string>
+	<string> </string>
+	<string>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</string>
+	<string>{</string>
+	<string>    return [UITableViewCell new];</string>
+	<string>}</string>
+	<string> </string>
+	<string>#pragma mark - UITableViewDelegate</string>
+	<string> </string>
+	<string>- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath</string>
+	<string>{</string>
+	<string>    NSLog(@&quot;Cell Click&quot;);</string>
+	<string>}</string>
+	<string> </string>
+	<string>- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath</string>
+	<string>{</string>
+	<string>    return CGFLOAT_MIN;</string>
+	<string>}</string>
+	<string> </string>
+	<string>- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section</string>
+	<string>{</string>
+	<string>    return [UIView new];</string>
+	<string>}</string>
+	<string> </string>
+	<string>- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section</string>
+	<string>{</string>
+	<string>    return [UIView new];</string>
+	<string>}</string>
+	<string> </string>
+</array>
+</plist>

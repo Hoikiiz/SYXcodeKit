@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIButton</key>
+	<array>
+		<string>- ($__property_type__ *)$__property_name__</string>
+		<string>{</string>
+		<string>    if(_$__property_name__ == nil)</string>
+		<string>    {</string>
+		<string>        $__property_type__ *$__property_name__ = [$__property_type__ buttonWithType:UIButtonTypeCustom];</string>
+		<string>$__container__        [self.view addSubview: $__property_name__];||        [self addSubview:$__property_name__];</string>
+		<string>        [$__property_name__ addTarget:self action:@selector($__property_name__Click:) forControlEvents:UIControlEventTouchUpInside];</string>
+		<string>        _$__property_name__ = $__property_name__;</string>
+		<string>    }</string>
+		<string>    return _$__property_name__;</string>
+		<string>}</string>
+		<string> </string>
+	</array>
+	<key>Foundation</key>
+	<array>
+		<string>- ($__property_type__ *)$__property_name__</string>
+		<string>{</string>
+		<string>    if(_$__property_name__ == nil)</string>
+		<string>    {</string>
+		<string>        $__property_type__ *$__property_name__ = [$__property_type__ new];</string>
+		<string>        _$__property_name__ = $__property_name__;</string>
+		<string>    }</string>
+		<string>    return _$__property_name__;</string>
+		<string>}</string>
+		<string> </string>
+	</array>
+	<key>UIKit</key>
+	<array>
+		<string>- ($__property_type__ *)$__property_name__</string>
+		<string>{</string>
+		<string>    if(_$__property_name__ == nil)</string>
+		<string>    {</string>
+		<string>        $__property_type__ *$__property_name__ = [$__property_type__ new];</string>
+		<string>$__container__        [self.view addSubview: $__property_name__];||        [self addSubview:$__property_name__];</string>
+		<string>        _$__property_name__ = $__property_name__;</string>
+		<string>    }</string>
+		<string>    return _$__property_name__;</string>
+		<string>}</string>
+		<string> </string>
+	</array>
+	<key>UITableView</key>
+	<array>
+		<string>- (UITableView *)$__property_name__</string>
+		<string>{</string>
+		<string>    if (_$__property_name__ == nil)</string>
+		<string>    {</string>
+		<string>        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style: UITableViewStylePlain];</string>
+		<string>$__container__        [self.view addSubview: tableView];||        [self addSubview:tableView];</string>
+		<string>        tableView.delegate = self;</string>
+		<string>        tableView.dataSource = self;</string>
+		<string>        tableView.estimatedSectionFooterHeight = 0;</string>
+		<string>        tableView.estimatedSectionHeaderHeight = 0;</string>
+		<string>        tableView.tableFooterView = [UIView new];</string>
+		<string>        tableView.backgroundColor = [UIColor clearColor];</string>
+		<string>        _tableView = tableView;</string>
+		<string>    }</string>
+		<string>    return _$__property_name__;</string>
+		<string>}</string>
+		<string> </string>
+	</array>
+</dict>
+</plist>
