@@ -31,6 +31,9 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         var writeOffset = 0
         var hasTableView = false
         var interfaceIndex = 0
+        // [ClassName: (InterfaceIndex, ImplementationIndex)]
+//        var classInfos = [String: (Int, Int)]()
+        var classArray = [String]()
         
         for (index, object) in invocation.buffer.lines.enumerated() {
             let line = (object as! String).replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: ";", with: "")
@@ -40,16 +43,19 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             if line.contains("@interface") {
                 className = line.components(separatedBy: " ")[1].replacingOccurrences(of: "()", with: "")
                 interfaceIndex = index
+//                classInfos[className] = (index, 0)
+                classArray.append(className)
             }
             if line.contains("@implementation") {
-                className = line.components(separatedBy: " ")[1]
+                let tempClassName = line.components(separatedBy: " ")[1]
+//                if classInfos[className] != nil {
+//                    classInfos[className]?.1 = index + 1
+//                }
+                if classArray.contains(tempClassName) {
+                    implementationIndex = index + 1
+                }
+                
             }
-            
-            if line.contains("@implementation") {
-                implementationIndex = index + 1
-            }
-            
-    
             
             // check property
             if line.contains("@property") {
@@ -63,105 +69,106 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             }
         }
         
-//        for (index, className) in implementations {
-//            print("\(index) - \(className)")
-//        }
-        
-        // add Lazy Initializer
-        
-        invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        invocation.buffer.lines.insert("#pragma mark - Lazy Initialized", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        
-        
-        for po in propertyObjects {
-            if !po.needInitializer() {
-                continue
+        if propertyObjects.count > 0 {
+//            implementationIndex = (classInfos[(propertyObjects.first?.belongClass)!]?.1)!
+            
+            // add Lazy Initializer
+            
+            invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            invocation.buffer.lines.insert("#pragma mark - Lazy Initialized", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            
+            
+            for po in propertyObjects {
+                if !po.needInitializer() {
+                    continue
+                }
+                
+                for var li in po.getLazyInitialization() {
+                    li += "\n"
+                    invocation.buffer.lines.insert(li, at: implementationIndex + writeOffset)
+                    writeOffset += 1
+                }
             }
             
-            for var li in po.getLazyInitialization() {
-                li += "\n"
-                invocation.buffer.lines.insert(li, at: implementationIndex + writeOffset)
-                writeOffset += 1
-            }
-        }
-        
-        // add Layouts
-        
-        invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        invocation.buffer.lines.insert("#pragma mark - Layouts", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        
-        var layoutMethodName = ""
-        if propertyObjects.first!.belongClass.contains("Controller") {
-            layoutMethodName = "viewWillLayoutSubviews"
-        } else {
-            layoutMethodName = "layoutSubviews"
-        }
-        invocation.buffer.lines.insert("- (void)\(layoutMethodName)\n", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        
-        invocation.buffer.lines.insert("{\n", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        
-        invocation.buffer.lines.insert("    [super \(layoutMethodName)];\n", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        
-        
-        for po in propertyObjects {
-            if po.isUIKit() {
-                let frameString = "    self.\(po.propertyName).frame = CGRectZero;\n"
-                invocation.buffer.lines.insert(frameString, at: implementationIndex + writeOffset)
-                writeOffset += 1
-            }
-        }
-        
-        invocation.buffer.lines.insert("}", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        
-        
-        // add tableView stuff
-        if hasTableView {
-            // add protocol
-            var interfaceLine = (invocation.buffer.lines[interfaceIndex] as! String).replacingOccurrences(of: "\n", with: "")
-            interfaceLine += "<UITableViewDataSource, UITableViewDelegate>"
-            invocation.buffer.lines[interfaceIndex] = interfaceLine
+            // add Layouts
             
-            // add methods
-            for string in TableViewInfos as! [String] {
-                invocation.buffer.lines.insert(string, at: implementationIndex + writeOffset)
-                writeOffset += 1
+            invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            invocation.buffer.lines.insert("#pragma mark - Layouts", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            
+            var layoutMethodName = ""
+            if propertyObjects.first!.belongClass.contains("Controller") {
+                layoutMethodName = "viewWillLayoutSubviews"
+            } else {
+                layoutMethodName = "layoutSubviews"
+            }
+            invocation.buffer.lines.insert("- (void)\(layoutMethodName)\n", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            
+            invocation.buffer.lines.insert("{\n", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            
+            invocation.buffer.lines.insert("    [super \(layoutMethodName)];\n", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            
+            
+            for po in propertyObjects {
+                if po.isUIKit() {
+                    let frameString = "    self.\(po.propertyName).frame = CGRectZero;\n"
+                    invocation.buffer.lines.insert(frameString, at: implementationIndex + writeOffset)
+                    writeOffset += 1
+                }
+            }
+            
+            invocation.buffer.lines.insert("}", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            
+            
+            // add tableView stuff
+            if hasTableView {
+                // add protocol
+                var interfaceLine = (invocation.buffer.lines[interfaceIndex] as! String).replacingOccurrences(of: "\n", with: "")
+                interfaceLine += "<UITableViewDataSource, UITableViewDelegate>"
+                invocation.buffer.lines[interfaceIndex] = interfaceLine
+                
+                // add methods
+                for string in TableViewInfos as! [String] {
+                    invocation.buffer.lines.insert(string, at: implementationIndex + writeOffset)
+                    writeOffset += 1
+                }
+            }
+            
+            // add actoins
+            invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            invocation.buffer.lines.insert("#pragma mark - Actions", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
+            writeOffset += 1
+            
+            for po in propertyObjects {
+                if po.propertyType == "UIButton" {
+                    invocation.buffer.lines.insert("- (void)\(po.propertyName)Click:(\(po.propertyType) *)sender", at: implementationIndex + writeOffset)
+                    writeOffset += 1
+                    invocation.buffer.lines.insert("{", at: implementationIndex + writeOffset)
+                    writeOffset += 1
+                    invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
+                    writeOffset += 1
+                    invocation.buffer.lines.insert("}", at: implementationIndex + writeOffset)
+                    writeOffset += 1
+                    invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
+                    writeOffset += 1
+                }
             }
         }
         
-        // add actoins
-        invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        invocation.buffer.lines.insert("#pragma mark - Actions", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
-        writeOffset += 1
-        
-        for po in propertyObjects {
-            if po.propertyType == "UIButton" {
-                invocation.buffer.lines.insert("- (void)\(po.propertyName)Click:(\(po.propertyType) *)sender", at: implementationIndex + writeOffset)
-                writeOffset += 1
-                invocation.buffer.lines.insert("{", at: implementationIndex + writeOffset)
-                writeOffset += 1
-                invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
-                writeOffset += 1
-                invocation.buffer.lines.insert("}", at: implementationIndex + writeOffset)
-                writeOffset += 1
-                invocation.buffer.lines.insert("\n", at: implementationIndex + writeOffset)
-                writeOffset += 1
-            }
-        }
         
         
         
