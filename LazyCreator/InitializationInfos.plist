@@ -58,7 +58,7 @@
 		<string>        tableView.estimatedSectionHeaderHeight = 0;</string>
 		<string>        tableView.tableFooterView = [UIView new];</string>
 		<string>        tableView.backgroundColor = [UIColor clearColor];</string>
-		<string>        _tableView = tableView;</string>
+		<string>        _$__property_name__ = tableView;</string>
 		<string>    }</string>
 		<string>    return _$__property_name__;</string>
 		<string>}</string>
