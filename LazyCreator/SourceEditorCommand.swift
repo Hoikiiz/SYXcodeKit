@@ -169,9 +169,6 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             }
         }
         
-        
-        
-        
         completionHandler(nil)
     }
     

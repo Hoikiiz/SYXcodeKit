@@ -17,10 +17,6 @@
 		333C346E1F0B3C11008D25B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C346D1F0B3C11008D25B9 /* ViewController.swift */; };
 		333C34701F0B3C11008D25B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 333C346F1F0B3C11008D25B9 /* Assets.xcassets */; };
 		333C34731F0B3C11008D25B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333C34711F0B3C11008D25B9 /* Main.storyboard */; };
-		333C34811F0B3C32008D25B9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333C34801F0B3C32008D25B9 /* Cocoa.framework */; };
-		333C34861F0B3C32008D25B9 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C34851F0B3C32008D25B9 /* SourceEditorExtension.swift */; };
-		333C34881F0B3C32008D25B9 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C34871F0B3C32008D25B9 /* SourceEditorCommand.swift */; };
-		333C348C1F0B3C32008D25B9 /* Creator.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 333C347E1F0B3C32008D25B9 /* Creator.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +27,6 @@
 			remoteGlobalIDString = 3311A79E1F9D801500EF0B3B;
 			remoteInfo = LazyCreator;
 		};
-		333C348A1F0B3C32008D25B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 333C34601F0B3C11008D25B9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 333C347D1F0B3C32008D25B9;
-			remoteInfo = Creator;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,7 +36,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				333C348C1F0B3C32008D25B9 /* Creator.appex in Embed App Extensions */,
 				3311A7AA1F9D801500EF0B3B /* LazyCreator.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -69,12 +57,7 @@
 		333C346F1F0B3C11008D25B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		333C34721F0B3C11008D25B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		333C34741F0B3C11008D25B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		333C347E1F0B3C32008D25B9 /* Creator.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Creator.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		333C34801F0B3C32008D25B9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		333C34841F0B3C32008D25B9 /* Creator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Creator.entitlements; sourceTree = "<group>"; };
-		333C34851F0B3C32008D25B9 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
-		333C34871F0B3C32008D25B9 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
-		333C34891F0B3C32008D25B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,14 +73,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		333C347B1F0B3C32008D25B9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				333C34811F0B3C32008D25B9 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				333C346A1F0B3C11008D25B9 /* DefinationCreator */,
-				333C34821F0B3C32008D25B9 /* Creator */,
 				3311A7A11F9D801500EF0B3B /* LazyCreator */,
 				333C347F1F0B3C32008D25B9 /* Frameworks */,
 				333C34691F0B3C11008D25B9 /* Products */,
@@ -132,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				333C34681F0B3C11008D25B9 /* DefinationCreator.app */,
-				333C347E1F0B3C32008D25B9 /* Creator.appex */,
 				3311A79F1F9D801500EF0B3B /* LazyCreator.appex */,
 			);
 			name = Products;
@@ -156,25 +129,6 @@
 				333C34801F0B3C32008D25B9 /* Cocoa.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		333C34821F0B3C32008D25B9 /* Creator */ = {
-			isa = PBXGroup;
-			children = (
-				333C34851F0B3C32008D25B9 /* SourceEditorExtension.swift */,
-				333C34871F0B3C32008D25B9 /* SourceEditorCommand.swift */,
-				333C34891F0B3C32008D25B9 /* Info.plist */,
-				333C34831F0B3C32008D25B9 /* Supporting Files */,
-			);
-			path = Creator;
-			sourceTree = "<group>";
-		};
-		333C34831F0B3C32008D25B9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				333C34841F0B3C32008D25B9 /* Creator.entitlements */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,30 +163,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				333C348B1F0B3C32008D25B9 /* PBXTargetDependency */,
 				3311A7A91F9D801500EF0B3B /* PBXTargetDependency */,
 			);
 			name = DefinationCreator;
 			productName = DefinationCreator;
 			productReference = 333C34681F0B3C11008D25B9 /* DefinationCreator.app */;
 			productType = "com.apple.product-type.application";
-		};
-		333C347D1F0B3C32008D25B9 /* Creator */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 333C348D1F0B3C32008D25B9 /* Build configuration list for PBXNativeTarget "Creator" */;
-			buildPhases = (
-				333C347A1F0B3C32008D25B9 /* Sources */,
-				333C347B1F0B3C32008D25B9 /* Frameworks */,
-				333C347C1F0B3C32008D25B9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Creator;
-			productName = Creator;
-			productReference = 333C347E1F0B3C32008D25B9 /* Creator.appex */;
-			productType = "com.apple.product-type.xcode-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -254,11 +190,6 @@
 						DevelopmentTeam = AY6EP74J52;
 						ProvisioningStyle = Automatic;
 					};
-					333C347D1F0B3C32008D25B9 = {
-						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = AY6EP74J52;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 333C34631F0B3C11008D25B9 /* Build configuration list for PBXProject "DefinationCreator" */;
@@ -275,7 +206,6 @@
 			projectRoot = "";
 			targets = (
 				333C34671F0B3C11008D25B9 /* DefinationCreator */,
-				333C347D1F0B3C32008D25B9 /* Creator */,
 				3311A79E1F9D801500EF0B3B /* LazyCreator */,
 			);
 		};
@@ -300,13 +230,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		333C347C1F0B3C32008D25B9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -328,15 +251,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		333C347A1F0B3C32008D25B9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				333C34861F0B3C32008D25B9 /* SourceEditorExtension.swift in Sources */,
-				333C34881F0B3C32008D25B9 /* SourceEditorCommand.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -344,11 +258,6 @@
 			isa = PBXTargetDependency;
 			target = 3311A79E1F9D801500EF0B3B /* LazyCreator */;
 			targetProxy = 3311A7A81F9D801500EF0B3B /* PBXContainerItemProxy */;
-		};
-		333C348B1F0B3C32008D25B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 333C347D1F0B3C32008D25B9 /* Creator */;
-			targetProxy = 333C348A1F0B3C32008D25B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -542,42 +451,6 @@
 			};
 			name = Release;
 		};
-		333C348E1F0B3C32008D25B9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Creator/Creator.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = AY6EP74J52;
-				INFOPLIST_FILE = Creator/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.taogu.DefinationCreator.Creator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		333C348F1F0B3C32008D25B9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Creator/Creator.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = AY6EP74J52;
-				INFOPLIST_FILE = Creator/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.taogu.DefinationCreator.Creator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -604,15 +477,6 @@
 			buildConfigurations = (
 				333C34781F0B3C11008D25B9 /* Debug */,
 				333C34791F0B3C11008D25B9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		333C348D1F0B3C32008D25B9 /* Build configuration list for PBXNativeTarget "Creator" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				333C348E1F0B3C32008D25B9 /* Debug */,
-				333C348F1F0B3C32008D25B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
